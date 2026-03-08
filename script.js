@@ -122,3 +122,96 @@ function deleteTask(){
 renderTasks();
 addNewTask();
 deleteTask();
+
+
+function dailyPlanner(){
+
+    let clutter = "";
+    const dayPlanner = document.querySelector(".daily-planner-fullpage .day-planner");
+
+    // CREATE TIME BLOCKS
+    for(let i = 6; i <= 23; i++){
+
+        let startHour = i % 12 || 12;
+        let endHour = (i + 1) % 12 || 12;
+
+        let startAmPm = i < 12 ? "AM" : "PM";
+        let endAmPm = (i + 1) < 12 ? "AM" : "PM";
+
+        let timeRange = `${startHour}:00 ${startAmPm} - ${endHour}:00 ${endAmPm}`;
+
+        clutter += `
+            <div class="day-planner-time" data-time="${timeRange}">
+                <p>${timeRange}</p>
+                <input class="planMes" type="text" placeholder="...">
+                <span><i class="ri-close-fill"></i></span>
+            </div>
+        `;
+    }
+
+    dayPlanner.innerHTML = clutter;
+
+
+    // LOAD SAVED DATA
+    let savedPlans = JSON.parse(localStorage.getItem("dailyPlanner")) || {};
+
+    document.querySelectorAll(".planMes").forEach((input)=>{
+
+        let container = input.closest(".day-planner-time");
+        let time = container.dataset.time;
+
+        if(savedPlans[time]){
+            input.value = savedPlans[time];
+        }
+
+    });
+
+
+    const plannerPanel = document.querySelector('.daily-planner-fullpage .day-planner');
+
+
+    // SAVE DATA WHEN USER TYPES
+    plannerPanel.addEventListener("input",(e)=>{
+
+        if(e.target.classList.contains("planMes")){
+
+            let container = e.target.closest(".day-planner-time");
+            let time = container.dataset.time;
+
+            let savedPlans = JSON.parse(localStorage.getItem("dailyPlanner")) || {};
+
+            savedPlans[time] = e.target.value;
+
+            localStorage.setItem("dailyPlanner", JSON.stringify(savedPlans));
+
+        }
+
+    });
+
+
+    // CLEAR INPUT + REMOVE FROM STORAGE
+    plannerPanel.addEventListener("click",(e)=>{
+
+        if(e.target.closest("span")){
+
+            let planContainer = e.target.closest(".day-planner-time");
+            let inputBox = planContainer.querySelector("input");
+
+            let time = planContainer.dataset.time;
+
+            inputBox.value = "";
+
+            let savedPlans = JSON.parse(localStorage.getItem("dailyPlanner")) || {};
+
+            delete savedPlans[time];
+
+            localStorage.setItem("dailyPlanner", JSON.stringify(savedPlans));
+
+        }
+
+    });
+
+}
+
+dailyPlanner();
+

@@ -53,14 +53,15 @@ section.allElems{
     padding: 25px;
     padding-top: 100px;
     display: flex;
+    justify-content: space-evenly;
     gap: 25px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     position: absolute;
 }
 
 section .elem{
-    height: 350px;
-    width: 240px;
+    height: 380px;
+    width: 250px;
     border-radius: 10px;
     color: var(--primary);
     overflow: hidden;
@@ -305,4 +306,63 @@ section .elem h2{
 /* --------------------- daily-planner-fullpage -------------------- */
 
 
+.daily-planner-fullpage h2{
+    font-size: 45px;
+    padding: 20px 30px;
+    letter-spacing: 3px;
+}
 
+.daily-planner-fullpage .day-planner{
+    width: 100%;
+    height: 85%;
+    background-color: var(--ternary2);
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: auto;
+}
+
+.daily-planner-fullpage .day-planner .day-planner-time{
+    width: 45%;
+    background-color: var(--secondary);
+    padding: 22px 10px 0px 10px; 
+    border-radius: 5px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.daily-planner-fullpage .day-planner .day-planner-time p{
+    font-size: 17px;
+    position: absolute;
+    top: 12%;
+    left: 3%;
+    color: var(--primary);
+}
+
+.daily-planner-fullpage .day-planner .day-planner-time input{
+    font-size: 24px;
+    margin: 0 20px;
+    background-color: var(--secondary);
+    color: var(--primary);
+    border: none;
+    outline: none;
+    width: 90%;
+    padding: 10px 15px;
+}
+.daily-planner-fullpage .day-planner .day-planner-time span{
+    position: absolute;
+    right: 2%;
+    top: 25%;
+    font-size: 30px;
+    transition: all ease 0.2s;
+}
+.daily-planner-fullpage .day-planner .day-planner-time span:hover{
+    color: red;
+}
+
+.daily-planner-fullpage .day-planner .day-planner-time span:active{
+    scale: 0.85;
+}
