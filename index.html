@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productivity Dashboard</title>
+    <link rel="shortcut icon" href="./android-chrome-512x512.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"rel="stylesheet"/>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -62,25 +63,43 @@
             <div class="day-planner">
             </div>
         </section>
+
         <section class="fullElem motivation-fullpage">
             <button class="back" id="2"><i class="ri-close-fill"></i></button>
             <h2>Motivational Quotes</h2>
             <div class="motivational-container">
-
+            <div class="motivation-wrapper">
+                <div class="motivation-1">
+                    <h2>Quote of the Day</h2>
+                </div>
+                <div class="motivation-2">
+                    <h2 id="quoteText">Loading quote...</h2>
+                </div>
+                <div class="motivation-3">
+                    <span id="quoteAuthor">Author :</span>
+                    <h2 id="quoteAuthor">...</h2>
+                </div>
             </div>
         </section>
+
         <section class="fullElem pomodomo-timer-fullpage">
             <button class="back" id="3"><i class="ri-close-fill"></i></button>
-            <h2>Pomodomo Timer</h2>
+            <h2>Study With Me !</h2>
             <div class="pomodomo-container">
-
+                <h2 class="session">Work Session</h2>
+                <h1>25:00</h1>
+                <div class="timer-buttons">
+                    <button class="start-timer">Start</button>
+                    <button class="pause-timer">Pause</button>
+                    <button class="reset-timer">Reset</button>
+                </div>
             </div>
         </section>
+
         <section class="fullElem daily-goals-fullpage">
             <button class="back" id="4"><i class="ri-close-fill"></i></button>
             <h2>Daily Goals</h2>
             <div class="goals-container">
-
             </div>
         </section>
 

@@ -187,6 +187,86 @@ function dailyPlanner(){
 
     });
 }
-
 dailyPlanner();
 
+
+let quoteContainer = document.querySelector('.motivation-fullpage .motivational-container .motivation-wrapper .motivation-2 h2');
+let authorContainer = document.querySelector('.motivation-fullpage .motivational-container .motivation-wrapper .motivation-3 h2');
+async function motivationQuotes(){
+    let response = await fetch('https://dummyjson.com/quotes/random');
+    let data = await response.json();
+    quoteContainer.innerHTML = data.quote
+    authorContainer.innerHTML = data.author
+}
+motivationQuotes();
+
+
+
+
+let timeContainer = document.querySelector('.pomodomo-timer-fullpage .pomodomo-container h1');
+let startBtn = document.querySelector('.pomodomo-timer-fullpage .pomodomo-container .start-timer');
+let pauseBtn = document.querySelector('.pomodomo-timer-fullpage .pomodomo-container .pause-timer');
+let resetBtn = document.querySelector('.pomodomo-timer-fullpage .pomodomo-container .reset-timer');
+let session = document.querySelector('.pomodomo-timer-fullpage .pomodomo-container h2');
+let myTimeInterval;
+let isStudy = true;
+let totalSecond = 25 * 60;
+
+function pomodomo(){
+    function updateTimer(){
+        let minutes = String(Math.floor(totalSecond / 60));
+        let seconds = String(totalSecond % 60);
+        timeContainer.innerHTML = `${minutes.padStart(2,"0")}:${seconds.padStart(2,"0")}`;
+    }
+    updateTimer();
+
+    function startTimer(){
+        clearInterval(myTimeInterval);
+        myTimeInterval = setInterval(() => {
+            if(totalSecond > 0){
+                totalSecond--;
+                updateTimer();
+            }
+            else{
+                clearInterval(myTimeInterval);
+                
+                if(isStudy){
+                    isStudy = false;
+                    totalSecond = 5 * 60;
+                    startBtn.innerHTML = "Start";
+                    session.innerHTML = 'Take a Break';
+                    session.style.backgroundColor = 'rgb(46, 139, 87)';
+                }
+                else{
+                    isStudy = true;
+                    totalSecond = 25 * 60;
+                    startBtn.innerHTML = "Start";
+                    session.innerHTML = 'Work Session';
+                    session.style.backgroundColor = 'rgb(175, 175, 23)';
+                }
+                setTimeout( () =>{
+                    updateTimer();
+                },500);
+            }
+        }, 1000);
+        startBtn.innerHTML = "Running";
+    }
+
+    function pauseTimer(){
+        clearInterval(myTimeInterval);
+        startBtn.innerHTML = "Resume";
+    }
+
+    function resetTimer(){
+        clearInterval(myTimeInterval);
+        isStudy = true;
+        totalSecond = 25 * 60;
+        startBtn.innerHTML = "Start";
+        updateTimer();
+    }
+
+    startBtn.addEventListener('click', startTimer);
+    pauseBtn.addEventListener('click', pauseTimer);
+    resetBtn.addEventListener('click', resetTimer);
+}
+pomodomo();
