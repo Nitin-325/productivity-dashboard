@@ -270,3 +270,75 @@ function pomodomo(){
     resetBtn.addEventListener('click', resetTimer);
 }
 pomodomo();
+
+
+
+
+const goalsList = document.getElementById('goals-list');
+const progressElem = document.getElementById('progress');
+const progressPercent = document.getElementById('progress-percent');
+const addGoalBtn = document.getElementById('addGoalBtn');
+
+function dailyGoal(){
+    let goals = JSON.parse(localStorage.getItem('dailyGoals')) || [
+      { text: 'Learn JavaScript', status: 'completed' },
+      { text: 'Workout', status: 'pending' },
+      { text: 'Read Book', status: 'failed' },
+    ];
+
+    function saveGoals() {
+    localStorage.setItem('dailyGoals', JSON.stringify(goals));
+    }
+
+    function updateProgress() {
+        const totalGoals = goals.length;
+        const completedGoals = goals.filter(goal => goal.status === 'completed').length;
+        const progress = totalGoals === 0 ? 0 : Math.round((completedGoals / totalGoals) * 100);
+        progressElem.style.width = progress + '%';
+        progressPercent.textContent = progress + '%';
+        }
+        function renderGoals() {
+            goalsList.innerHTML = '';
+            goals.forEach((goal, index) => {
+                const goalDiv = document.createElement('div');
+                goalDiv.className = `goal ${goal.status}`;
+                goalDiv.innerHTML = `
+                    <span>${goal.status === 'completed' ? '✅<sup>Complete</sup>' : goal.status === 'pending' ? '⏳<sup>Pending</sup>' : '❌<sup>Delete</sup>'} ${goal.text}</span>
+                    <button class="status-btn" data-index="${index}" data-status="completed">✅</button>
+                    <button class="status-btn" data-index="${index}" data-status="pending">⏳</button>
+                    <button class="status-btn" data-index="${index}" data-status="failed">❌</button>
+                    <button class="delete-btn" data-index="${index}">🗑️</button>
+                `;
+                goalsList.appendChild(goalDiv);
+            });
+            updateProgress();
+        }
+        function addGoal(text) {
+            goals.push({ text: text, status: 'pending' });
+            saveGoals();
+            renderGoals();
+        }
+        document.getElementById('addGoalBtn').addEventListener('click', () => {
+            const goalText = prompt('Enter your goal:');
+            if (goalText) {
+                addGoal(goalText);
+        }
+    });
+    goalsList.addEventListener('click', (e) => {
+        if (e.target.classList.contains('status-btn')) {
+            const index = e.target.dataset.index;
+            const status = e.target.dataset.status;
+            goals[index].status = status;
+            saveGoals();
+            renderGoals();
+        } else if (e.target.classList.contains('delete-btn')) {
+            const index = e.target.dataset.index;
+            goals.splice(index, 1);
+            saveGoals();
+            renderGoals();
+        }
+    });
+    renderGoals();
+}
+dailyGoal();
+

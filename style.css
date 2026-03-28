@@ -94,7 +94,7 @@ section .elem h2{
 
 .fullElem{
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     background-color: var(--secondary);
     padding: 30px;
     display: none;
@@ -143,7 +143,7 @@ section .elem h2{
 
 .todo-list-fullpage .todo-container .allTask{
     width: 64%;
-    height: 100%;
+    min-height: 85%;
     border-radius: 20px;
     background-color: var(--ternary2);
 }
@@ -318,6 +318,7 @@ section .elem h2{
     background-color: var(--ternary2);
     border-radius: 20px;
     padding: 20px;
+    padding-top: 40px;
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
@@ -372,7 +373,6 @@ section .elem h2{
 
 .motivation-fullpage{
     width:100%;
-    height:100%;
 }
 
 .motivation-fullpage h2{
@@ -403,6 +403,7 @@ section .elem h2{
     box-shadow:0 20px 80px rgba(0,0,0,0.35);
     transition:all .35s ease;
     position:relative;
+    top: 70px;
 }
 
 .motivation-fullpage .motivational-container .motivation-wrapper:hover{
@@ -482,7 +483,6 @@ section .elem h2{
 
 .pomodomo-timer-fullpage{
     width:100%;
-    height:100%;
     position: relative;
 }
 
@@ -541,3 +541,95 @@ section .elem h2{
     scale: 0.97;
     box-shadow: 0 0 0 black;
 }
+
+
+
+
+/* --------------------- daily-goals-fullpage -------------------- */
+
+.daily-goals-fullpage{
+    width:100%;
+    display: block;
+}
+
+.daily-goals-fullpage h2{
+    font-size:45px;
+    padding:20px 30px;
+    letter-spacing:3px;
+}
+
+.daily-goals-fullpage .container{
+    width: 100%;
+    min-height: 85%;
+    background-color: var(--ternary2);
+    border-radius: 20px;
+    padding: 6% 20%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.daily-goals-fullpage .progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #ddd;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.daily-goals-fullpage .progress {
+  width: 70%;
+  height: 100%;
+  background: #6366F1;
+  border-radius: 10px;
+}
+
+.daily-goals-fullpage .goal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    margin: 10px 0;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    color: var(--ternary);
+    position: relative;
+}
+
+.daily-goals-fullpage .container .goals-list span{
+    padding-top: 13px;
+    width: 85%;
+}
+
+.daily-goals-fullpage .container .goals-list span sup{
+    font-size: 10px;
+    position: absolute;
+    top: 8px;
+    left: 13px;
+    color: royalblue;
+}
+
+.completed { border-left: 5px solid #22C55E; }
+.pending { border-left: 5px solid #F59E0B; }
+.failed { border-left: 5px solid #EF4444; }
+
+.daily-goals-fullpage .add-btn {
+    width: 100%;
+    padding: 10px;
+    background: #6366F1;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+.daily-goals-fullpage .goal button {
+    margin-left: 10px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
