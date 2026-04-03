@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productivity Dashboard</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='0' y='0' width='14' height='14' rx='3' fill='%237c5cfc'/%3E%3Crect x='18' y='0' width='14' height='14' rx='3' fill='%23fc5c7d'/%3E%3Crect x='0' y='18' width='14' height='14' rx='3' fill='%23fc5c7d' opacity='.6'/%3E%3Crect x='18' y='18' width='14' height='14' rx='3' fill='%235cf0b8'/%3E%3Crect x='3' y='9' width='2.5' height='3.5' rx='1' fill='%23fff'/%3E%3Crect x='6.5' y='6.5' width='2.5' height='6' rx='1' fill='%23fff'/%3E%3Crect x='10' y='4.5' width='2.5' height='8' rx='1' fill='%23fff'/%3E%3Crect x='21' y='5.5' width='8' height='1.5' rx='.75' fill='%23fff' opacity='.6'/%3E%3Crect x='21' y='8.5' width='6' height='1.5' rx='.75' fill='%23fff' opacity='.8'/%3E%3Crect x='21' y='11.5' width='7' height='1.5' rx='.75' fill='%23fff'/%3E%3Ccircle cx='7' cy='25' r='4.5' fill='none' stroke='%23fff' stroke-width='1.8' opacity='.85'/%3E%3Cline x1='7' y1='25' x2='7' y2='21.5' stroke='%23fff' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='7' y1='25' x2='9.5' y2='26.5' stroke='%23fff' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='25' cy='25' r='4.5' fill='none' stroke='%230d0d12' stroke-width='1.8' opacity='.4'/%3E%3Ccircle cx='25' cy='25' r='2.2' fill='none' stroke='%230d0d12' stroke-width='1.8' opacity='.5'/%3E%3Ccircle cx='25' cy='25' r='.9' fill='%230d0d12' opacity='.7'/%3E%3C/svg%3E"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- THEME BUTTON -->
+    <button class="theme-btn" id="themeBtn">
+      <i class="ri-palette-line"></i> Theme
+    </button>
+    <div class="theme-box" id="themeBox">
+      <h4 data-theme="">Default Dark</h4>
+      <h4 data-theme="light">Light</h4>
+      <h4 data-theme="neon">Neon</h4>
+      <h4 data-theme="nature">Nature</h4>
+      <h4 data-theme="gradient">Gradient</h4>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="dashboard" id="dashboard">
+      <!-- HEADER STRIP -->
+      <div class="header-strip" id="headerStrip">
+        <div class="header-left">
+          <div class="hdate" id="hdate"></div>
+          <div class="htime" id="htime">00:00:00</div>
+          <div class="hday" id="hday"></div>
+        </div>
+        <div class="header-right">
+          <div class="hcity" id="hcity">Loading...</div>
+          <div class="htemp" id="htemp">—</div>
+          <div class="hdetails">
+            <span id="hhumidity"></span>
+            <span id="hwind"></span>
+            <span id="hprecip"></span>
+          </div>
+          <div class="hcondition" id="hcondition"></div>
+          <div class="city-search">
+            <input type="text" id="cityInput" placeholder="Change city..." />
+            <button id="citySearchBtn"><i class="ri-search-line"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARDS GRID -->
+      <div class="cards-grid">
+        <div class="card" data-open="todo">
+          <img
+            src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=400&auto=format&fit=crop&q=60"
+            alt="To Do"
+          />
+          <div class="card-icon">✅</div>
+          <div class="card-label">To Do List</div>
+        </div>
+        <div class="card" data-open="planner">
+          <img
+            src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=400&auto=format&fit=crop&q=60"
+            alt="Planner"
+          />
+          <div class="card-icon">📅</div>
+          <div class="card-label">Daily Planner</div>
+        </div>
+        <div class="card" data-open="motivation">
+          <img
+            src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=400&auto=format&fit=crop&q=60"
+            alt="Motivation"
+          />
+          <div class="card-icon">✨</div>
+          <div class="card-label">Motivation</div>
+        </div>
+        <div class="card" data-open="pomodoro">
+          <img
+            src="https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=400&auto=format&fit=crop&q=60"
+            alt="Pomodoro"
+          />
+          <div class="card-icon">⏱</div>
+          <div class="card-label">Pomodoro Timer</div>
+        </div>
+        <div class="card" data-open="goals">
+          <img
+            src="https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?w=400&auto=format&fit=crop&q=60"
+            alt="Goals"
+          />
+          <div class="card-icon">🎯</div>
+          <div class="card-label">Daily Goals</div>
+        </div>
+      </div>
+    </div>
+    <!-- /dashboard -->
+
+    <!-- ======= FULL PAGES ======= -->
+
+    <!-- TODO -->
+    <div class="full-page" id="page-todo">
+      <div class="fp-header">
+        <div class="fp-title">To<span>Do</span> List</div>
+        <button class="close-btn" data-close="todo">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <div class="todo-wrap">
+        <div class="todo-add">
+          <input type="text" id="taskInput" placeholder="Task name..." />
+          <textarea
+            id="taskDetails"
+            placeholder="Details (optional)..."
+          ></textarea>
+          <div class="imp-row">
+            <input type="checkbox" id="impCheck" />
+            <label for="impCheck">Mark as Important</label>
+          </div>
+          <button class="primary-btn" id="addTaskBtn">Add Task</button>
+        </div>
+        <div class="todo-list" id="taskList"></div>
+      </div>
+    </div>
+
+    <!-- PLANNER -->
+    <div class="full-page" id="page-planner">
+      <div class="fp-header">
+        <div class="fp-title">Daily <span>Planner</span></div>
+        <button class="close-btn" data-close="planner">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <div class="planner-grid" id="plannerGrid"></div>
+    </div>
+
+    <!-- MOTIVATION -->
+    <div class="full-page" id="page-motivation">
+      <div class="fp-header">
+        <div class="fp-title">Daily <span>Spark</span></div>
+        <button class="close-btn" data-close="motivation">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <div class="moti-center">
+        <div class="quote-card">
+          <div class="quote-badge">Quote of the Day</div>
+          <p id="quoteText">Loading...</p>
+          <div class="quote-author">— <span id="quoteAuthor"></span></div>
+          <button class="refresh-quote" id="refreshQuote">
+            <i class="ri-refresh-line"></i> New Quote
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- POMODORO -->
+    <div class="full-page" id="page-pomodoro">
+      <div class="fp-header">
+        <div class="fp-title">Focus <span>Timer</span></div>
+        <button class="close-btn" data-close="pomodoro">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <div class="pomo-center">
+        <div class="pomo-card">
+          <div class="session-badge" id="sessionBadge">Work Session</div>
+          <div class="pomo-time" id="pomoTime">25:00</div>
+          <div class="pomo-btns">
+            <button id="startBtn">Start</button>
+            <button id="pauseBtn">Pause</button>
+            <button id="resetBtn">Reset</button>
+          </div>
+          <div class="pomo-progress">
+            <div
+              class="pomo-progress-inner"
+              id="pomoProgressBar"
+              style="width: 100%"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GOALS -->
+    <div class="full-page" id="page-goals">
+      <div class="fp-header">
+        <div class="fp-title">Daily <span>Goals</span></div>
+        <button class="close-btn" data-close="goals">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <div class="goals-wrap">
+        <div class="goals-top">
+          <div class="progress-label">
+            <span>Progress</span>
+            <strong id="goalPercent">0%</strong>
+          </div>
+          <div class="prog-bar">
+            <div class="prog-inner" id="goalProgress" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="goal-list" id="goalList"></div>
+        <button class="add-goal-btn" id="addGoalBtn">+ Add New Goal</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
